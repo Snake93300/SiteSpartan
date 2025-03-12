@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpartanCompany</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-gradient-spartan {
+            background: linear-gradient(135deg, #000000, #000000, #000000);
+        }
+        .bg-gradient-footer {
+            background: linear-gradient(400deg, #000000, #000000, #000000);
+        }
+        .nav-link {
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-link:hover {
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+        .diagonal-section {
+            position: relative;
+            background: linear-gradient(135deg, #000000, #000000);
+            height: 600px;
+            clip-path: polygon(0 0, 100% 15%, 100% 85%, 0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 0 5%;
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 40px;
+            box-shadow: 0 10px 22px rgba(255, 208, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans">
+<!-- Header -->
+<header class="bg-gradient-spartan p-6 flex items-center justify-between shadow-md">
+    <!-- Logo de l'entreprise -->
+    <img src="c:\\Users\\Abderrahim\\Desktop\\Site internet Fehd\\assets\\Spartan.png.png" alt="Spartan.png" class="h-36 mb-4">
+
+
+    
+<!-- Menu Mobile Centré & Visible -->
+<div class="md:hidden flex justify-center mt-4 relative z-50">
+    <button id="menu-toggle" class="text-white text-3xl focus:outline-none">&#9776;</button>
+</div>
+
+<!-- Dropdown Menu amélioré -->
+<div id="dropdown-menu" class="hidden absolute top-24 left-1/2 transform -translate-x-1/2 w-64 bg-gray-900 bg-opacity-95 shadow-lg rounded-lg text-center border border-yellow-500 z-50">
+    <ul class="text-center py-4">
+        <li class="py-3 border-b border-gray-700"><a href="#accueil" class="text-white hover:bg-red-700 px-6 py-3 block rounded-lg">Accueil</a></li>
+        <li class="py-3 border-b border-gray-700"><a href="#contact" class="text-white hover:bg-red-700 px-6 py-3 block rounded-lg">Contact</a></li>
+        <li class="py-3"><a href="#devis" class="text-white hover:bg-red-700 px-6 py-3 block rounded-lg">Demander un devis</a></li>
+    </ul>
+</div>
+
+<!-- Script pour activer/désactiver le menu -->
+<script>
+    document.getElementById("menu-toggle").addEventListener("click", function() {
+        let menu = document.getElementById("dropdown-menu");
+        menu.classList.toggle("hidden");
+    });
+</script>
+
+
+
+    
+<nav id="menu" class="hidden md:flex space-x-8 justify-center w-full">
+        <a href="#accueil" class="bg-black-700 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded transition duration-300">Accueil</a>
+        <a href="#contact" class="bg-black-700 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded transition duration-300">Contact</a>
+        <a href="#devis" class="bg-black-700 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded transition duration-300">Demander un devis</a>
+    </nav>
+</header>
+
+<!-- Section avec images et séparation diagonale -->
+<section class="diagonal-section flex flex-col md:flex-row">
+    <div class="image-container">
+        <img src="c:\\Users\\Abderrahim\\Desktop\\Site internet Fehd\\assets\\PhotoMonteMeuble.jpg" alt="Image Gauche">
+    </div>
+    <div class="image-container">
+        <img src="c:\\Users\\Abderrahim\\Desktop\\Site internet Fehd\\assets\\Imagelibredroit1.jpg" alt="Image Droite">
+    </div>
+</section>
+
+<div class="w-full h-1 bg-yellow-500 my-4"></div>
+
+<!-- Accueil -->
+<section id="accueil" class="h-screen flex flex-col items-center justify-center text-center text-white bg-cover bg-center bg-black">
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-lg text-yellow-500">Bienvenue chez SpartanCompany</h1>
+    <p class="text-lg md:text-xl max-w-2xl text-gray-300">Société de transport et monte-meuble intervenant dans toute l'Île-de-France et ses alentours.</p>
+    <p class="text-md md:text-lg mt-4 text-gray-300">Plus de 10 ans d'expérience à votre service.</p>
+</section>
+
+<div class="w-full h-1 bg-yellow-500 my-4"></div>
+
+<!-- Contact -->
+<section id="contact" class="p-20 text-center bg-gradient-footer">
+    <h2 class="text-4xl md:text-5xl font-bold text-white-500 mb-6">Contact</h2>
+    <p class="text-lg text-gray-300 max-w-3xl mx-auto mb-10">Pour toute question, contactez-nous à : 
+        <a href="mailto:spartancompany93@gmail.com" class="text-yellow-500 hover:underline">spartancompany93@gmail.com</a>
+    </p>
+</section>
+
+<div class="w-full h-1 bg-yellow-500 my-4"></div>
+
+<!-- Devis -->
+<section id="devis" class="p-16 text-center">
+    <h2 class="text-5xl font-bold text-white-500 mb-6">Demander un Devis</h2>
+    <p class="text-lg text-gray-300 mb-6">Cliquez sur le bouton ci-dessous pour accéder au formulaire de demande de devis.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJMh0LOUDkcUr1V93ugYY1_ZaERdU3kkNGOzbXgWvuNvlpmg/viewform?usp=dialog" target="_blank" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded transition duration-300">Remplir le Formulaire</a>
+</section>
+
+
+<!-- Liens vers les réseaux sociaux (déplacés dans le footer) -->
+<footer class="p-12 bg-black-footer text-white text-center">
+    <div class="container mx-auto flex flex-col items-center">
+        <img src="c:\\Users\\Abderrahim\\Desktop\\Site internet Fehd\\assets\\Spartan.png.png" alt="SpartanCompany Logo" class="h-20 mb-4">
+        <div class="flex space-x-4 mb-4">
+            <a href="https://www.facebook.com/profile.php?id=61571814646691" target="_blank">
+                <img src="c:\\Users\\Abderrahim\\Desktop\\Site internet Fehd\\assets\\facebook.png.png" alt="Facebook" class="max-w-[50px] md:max-w-[70px]">
+            </a>
+            <a href="https://www.instagram.com/spartan__company/" target="_blank">
+                <img src="c:\\Users\\Abderrahim\\Desktop\\Site internet Fehd\\assets\\instagram.png.png" alt="Instagram" class="max-w-[50px] md:max-w-[70px]">
+            </a>
+            <a href="https://www.tiktok.com/@spartcompany?lang=fr" target="_blank">
+                <img src="c:\Users\Abderrahim\Desktop\Site internet Fehd\assets\tiktokblanc2.png" alt="TikTok" class="max-w-[50px] md:max-w-[70px]">
+
+                <div class="flex justify-center space-x-10 text-gray-300 items-center">
+                    <a href="mailto:spartancompany93@gmail.com" class="hover:text-yellow-500">Contact</a>
+                    <a href="c:\\Users\\Abderrahim\\Desktop\\Site internet Fehd\\mention légal V2.html" target="_blank" class="hover:text-yellow-500">Mentions légales</a>
+            </a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
