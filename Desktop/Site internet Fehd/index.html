@@ -41,36 +41,31 @@
 <!-- Header -->
 <header class="bg-gradient-spartan p-6 flex items-center justify-between shadow-md">
     <!-- Logo de l'entreprise -->
-<img src="assets/Spartan.png.png" alt="Logo Spartan" class="h-36 mb-4">
+    <img src="assets/Spartan.png.png" alt="Logo Spartan" class="h-36 mb-4">
 
+    <!-- Menu Mobile Centré & Visible -->
+    <div class="md:hidden flex justify-center mt-4 relative z-50">
+        <button id="menu-toggle" class="text-white text-3xl focus:outline-none">&#9776;</button>
+    </div>
 
-    
-<!-- Menu Mobile Centré & Visible -->
-<div class="md:hidden flex justify-center mt-4 relative z-50">
-    <button id="menu-toggle" class="text-white text-3xl focus:outline-none">&#9776;</button>
-</div>
+    <!-- Dropdown Menu amélioré -->
+    <div id="dropdown-menu" class="hidden absolute top-24 left-1/2 transform -translate-x-1/2 w-64 bg-gray-900 bg-opacity-95 shadow-lg rounded-lg text-center border border-yellow-500 z-50">
+        <ul class="text-center py-4">
+            <li class="py-3 border-b border-gray-700"><a href="#accueil" class="text-white hover:bg-red-700 px-6 py-3 block rounded-lg">Accueil</a></li>
+            <li class="py-3 border-b border-gray-700"><a href="#contact" class="text-white hover:bg-red-700 px-6 py-3 block rounded-lg">Contact</a></li>
+            <li class="py-3"><a href="#devis" class="text-white hover:bg-red-700 px-6 py-3 block rounded-lg">Demander un devis</a></li>
+        </ul>
+    </div>
 
-<!-- Dropdown Menu amélioré -->
-<div id="dropdown-menu" class="hidden absolute top-24 left-1/2 transform -translate-x-1/2 w-64 bg-gray-900 bg-opacity-95 shadow-lg rounded-lg text-center border border-yellow-500 z-50">
-    <ul class="text-center py-4">
-        <li class="py-3 border-b border-gray-700"><a href="#accueil" class="text-white hover:bg-red-700 px-6 py-3 block rounded-lg">Accueil</a></li>
-        <li class="py-3 border-b border-gray-700"><a href="#contact" class="text-white hover:bg-red-700 px-6 py-3 block rounded-lg">Contact</a></li>
-        <li class="py-3"><a href="#devis" class="text-white hover:bg-red-700 px-6 py-3 block rounded-lg">Demander un devis</a></li>
-    </ul>
-</div>
+    <!-- Script pour activer/désactiver le menu -->
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            let menu = document.getElementById("dropdown-menu");
+            menu.classList.toggle("hidden");
+        });
+    </script>
 
-<!-- Script pour activer/désactiver le menu -->
-<script>
-    document.getElementById("menu-toggle").addEventListener("click", function() {
-        let menu = document.getElementById("dropdown-menu");
-        menu.classList.toggle("hidden");
-    });
-</script>
-
-
-
-    
-<nav id="menu" class="hidden md:flex space-x-8 justify-center w-full">
+    <nav id="menu" class="hidden md:flex space-x-8 justify-center w-full">
         <a href="#accueil" class="bg-black-700 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded transition duration-300">Accueil</a>
         <a href="#contact" class="bg-black-700 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded transition duration-300">Contact</a>
         <a href="#devis" class="bg-black-700 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded transition duration-300">Demander un devis</a>
@@ -115,7 +110,7 @@
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJMh0LOUDkcUr1V93ugYY1_ZaERdU3kkNGOzbXgWvuNvlpmg/viewform?usp=dialog" target="_blank" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded transition duration-300">Remplir le Formulaire</a>
 </section>
 
-
+  
 <!-- Liens vers les réseaux sociaux (déplacés dans le footer) -->
 <footer class="p-12 bg-black-footer text-white text-center">
     <div class="container mx-auto flex flex-col items-center">
@@ -125,10 +120,10 @@
                 <img src="assets/facebook.png.png" alt="Facebook"> class="max-w-[50px] md:max-w-[70px]">
             </a>
             <a href="https://www.instagram.com/spartan__company/" target="_blank">
-                <img src="c:\\Users\\Abderrahim\\Desktop\\Site internet Fehd\\assets\\instagram.png.png" alt="Instagram" class="max-w-[50px] md:max-w-[70px]">
+                <img src="c:assets\\instagram.png.png" alt="Instagram" class="max-w-[50px] md:max-w-[70px]">
             </a>
             <a href="https://www.tiktok.com/@spartcompany?lang=fr" target="_blank">
-                <img src="c:\Users\Abderrahim\Desktop\Site internet Fehd\assets\tiktokblanc2.png" alt="TikTok" class="max-w-[50px] md:max-w-[70px]">
+                <img src="c:assets\tiktokblanc2.png" alt="TikTok" class="max-w-[50px] md:max-w-[70px]">
 
                 <div class="flex justify-center space-x-10 text-gray-300 items-center">
                     <a href="mailto:spartancompany93@gmail.com" class="hover:text-yellow-500">Contact</a>
