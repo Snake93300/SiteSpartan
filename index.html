@@ -1,158 +1,540 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpartanCompany</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .bg-gradient-spartan {
-            background: linear-gradient(135deg, #000000, #000000, #000000);
-        }
-        .bg-gradient-footer {
-            background: linear-gradient(400deg, #000000, #000000, #000000);
-        }
-        .nav-link {
-            transition: all 0.3s ease-in-out;
-        }
-        .nav-link:hover {
-            color: #FFD700;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-        }
-        .diagonal-section {
-            position: relative;
-            background: linear-gradient(135deg, #000000, #000000);
-            height: 600px;
-            clip-path: polygon(0 0, 100% 15%, 100% 85%, 0 100%);
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            padding: 0 5%;
-        }
-        .image-container img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 40px;
-            box-shadow: 0 10px 22px rgba(255, 208, 0, 0.5);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Spartan Company - Déménagement professionnel et sécurisé en France. Demandez votre devis gratuit." />
+  
+  <!-- ✅ Balises Open Graph à ajouter ici -->
+  <meta property="og:title" content="Spartan Company - Déménagement professionnel" />
+  <meta property="og:description" content="Déménagement express, garde-meuble, logistique événementielle — demandez votre devis !" />
+  <meta property="og:image" content="assets/images/Spartan.png.png" />
+  <meta property="og:type" content="website" />
+
+  <title>Spartan Company - Déménagement Professionnel</title>
+
+  <!-- Tailwind (CDN pour l’aperçu). Pour la prod : compiler un CSS local -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body{font-family:'Roboto',sans-serif}
+
+    html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* adapte selon la hauteur du header */
+}
+
+
+    /* Ruban défilant */
+    .marquee{white-space:nowrap;overflow:hidden;position:relative;background:#000;color:#fff}
+    .marquee span{display:inline-block;padding-left:100%;animation:scroll 20s linear infinite}
+    @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+
+    /* Apparition au scroll */
+    .animate-fade-up{opacity:0;transform:translateY(30px);transition:opacity .6s ease-out,transform .6s ease-out}
+    .animate-fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* Menu mobile overlay */
+#mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* 🔸 noir avec transparence à 60% */
+  backdrop-filter: blur(6px);     /* 🔸 effet flou doux (optionnel mais moderne) */
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .3s ease, opacity .3s ease;
+  z-index: 9999;
+}
+
+
+#mobileMenu.open {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+    /* Burger animé */
+    .burger-wrap{position:relative;width:32px;height:22px}
+    .burger-line{position:absolute;left:0;height:3px;width:32px;background:#fff;transition:transform .25s ease,opacity .2s ease;}
+    .burger-line.top{top:0}
+    .burger-line.middle{top:9px}
+    .burger-line.bottom{top:18px}
+    #burger.open .top{transform:translateY(9px) rotate(45deg)}
+    #burger.open .middle{opacity:0}
+    #burger.open .bottom{transform:translateY(-9px) rotate(-45deg)}
+  </style>
 </head>
-<body class="bg-black text-white font-sans">
-<!-- Header -->
-<header class="bg-gradient-spartan p-6 flex items-center justify-between shadow-md">
-    <!-- Logo de l'entreprise -->
-    <img src="assets/Spartan.png.png" alt="Spartan.png" class="h-36 mb-4">
 
-<!-- Menu Mobile Centré & Visible -->
-<div class="md:hidden flex justify-center mt-4 relative z-50">
-    <button id="menu-toggle" class="text-white text-3xl focus:outline-none">&#9776;</button>
-</div>
 
-<!-- Dropdown Menu amélioré -->
-<div id="dropdown-menu" class="hidden absolute top-24 left-1/2 transform -translate-x-1/2 w-64 bg-gray-900 bg-opacity-95 shadow-lg rounded-lg text-center border border-yellow-500 z-50">
-    <ul class="text-center py-4">
-        <li class="py-3 border-b border-gray-700"><a href="#accueil" class="text-white hover:bg-red-700 px-6 py-3 block rounded-lg">Accueil</a></li>
-        <li class="py-3 border-b border-gray-700"><a href="#contact" class="text-white hover:bg-red-700 px-6 py-3 block rounded-lg">Contact</a></li>
-        <li class="py-3"><a href="#devis" class="text-white hover:bg-red-700 px-6 py-3 block rounded-lg">Demander un devis</a></li>
-    </ul>
-</div>
+<body class="bg-black text-white">
 
-<!-- Script pour activer/désactiver le menu -->
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-black/95 backdrop-blur-sm text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 md:py-4 flex justify-between items-center">
+
+
+
+      <!-- Logo + nom -->
+      <div class="flex items-center gap-3">
+        <!-- Ici chemin local pour tes tests ; en ligne remplace par assets/logo.png -->
+        <img src="assets/images/Spartan.png.png" alt="Logo Spartan Company" class="h-16 sm:h-20 md:h-24 w-auto" onerror="this.onerror=null;this.src='https://via.placeholder.com/160x80?text=Logo';" />
+        <h1 class="text-2xl md:text-[1.6rem] font-bold text-yellow-400">Spartan Company</h1>
+      </div>
+
+      
+
+      <!-- Burger -->
+      <button id="burger" aria-label="Ouvrir le menu" aria-expanded="false" class="md:hidden">
+        <div class="burger-wrap">
+          <span class="burger-line top"></span>
+          <span class="burger-line middle"></span>
+          <span class="burger-line bottom"></span>
+        </div>
+      </button>
+
+
+
+      <!-- Nav desktop -->
+<nav class="hidden md:flex space-x-6">
+  <a href="#accueil" class="hover:text-orange-400 font-medium">Accueil</a>
+  <a href="#services" class="hover:text-orange-400 font-medium">Services</a>
+  <a href="#a-propos" class="hover:text-orange-400 font-medium">À propos</a>
+  <a href="#devis" class="hover:text-orange-400 font-medium">Devis</a>
+  <a href="#contact" class="hover:text-orange-400 font-medium">Contact</a>
+</nav>
+
+    </div>
+
+    <!-- Menu mobile overlay -->
+    <div id="mobileMenu" class="md:hidden pt-24 px-6 pb-10">
+      <div class="max-w-2xl mx-auto">
+        <div class="flex justify-end mb-4">
+          <button id="closeMenu" aria-label="Fermer le menu" class="text-white text-3xl">✖</button>
+        </div>
+        <nav class="space-y-3">
+<a href="#accueil"  
+   class="block text-lg font-semibold py-3 px-4 rounded-lg bg-black hover:bg-orange-500 hover:text-black transition-all duration-300 border-b border-white/10">
+   Accueil
+</a>
+<a href="#services"  
+   class="block text-lg font-semibold py-3 px-4 rounded-lg bg-black hover:bg-orange-500 hover:text-black transition-all duration-300 border-b border-white/10">
+   Services
+</a>
+<a href="#a-propos"  
+   class="block text-lg font-semibold py-3 px-4 rounded-lg bg-black hover:bg-orange-500 hover:text-black transition-all duration-300 border-b border-white/10">
+   À propos
+</a>
+<a href="#devis"  
+   class="block text-lg font-semibold py-3 px-4 rounded-lg bg-black hover:bg-orange-500 hover:text-black transition-all duration-300 border-b border-white/10">
+   Devis
+</a>
+<a href="#contact"  
+   class="block text-lg font-semibold py-3 px-4 rounded-lg bg-black hover:bg-orange-500 hover:text-black transition-all duration-300">
+   Contact
+</a>
+
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ACCUEIL -->
+  <section id="accueil" class="text-center py-20 md:py-24 bg-[#c69b5b] text-black">
+    <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Déménagez en toute sérénité</h2>
+    <p class="mb-8 max-w-2xl mx-auto text-black/90">Avec Spartan Company, bénéficiez d’un service rapide, sécurisé et professionnel.</p>
+    <a href="#devis" class="inline-block bg-white text-black font-bold px-6 py-3 rounded-full shadow-lg hover:bg-yellow-300 transition">Demandez un devis</a>
+  </section>
+
+  <!-- VISUELS -->
+  <section class="py-16 md:py-20 px-4 bg-black">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="flex flex-col items-center text-center md:text-left animate-fade-up">
+        <!-- Pour l’aperçu ici, j’utilise une image distante. En local, remets ton chemin C:\... si besoin -->
+        <img src="assets/images/PhotoMonteMeuble.jpg" alt="Monte Meuble" class="rounded-2xl shadow-xl mb-6" loading="lazy">
+        <h3 class="text-2xl font-bold text-yellow-400 mb-2">Monte-meuble jusqu’à 11 étages</h3>
+        <p class="text-gray-300">Spartan Company met à votre disposition un monte-meuble professionnel pour atteindre les étages les plus hauts avec facilité et sécurité.</p>
+      </div>
+      <div class="flex flex-col items-center text-center md:text-left animate-fade-up">
+        <img src="assets/images/Image Moto.jpg" alt="Déménagement Spartan" class="rounded-2xl shadow-xl mb-6" loading="lazy">
+        <h3 class="text-2xl font-bold text-yellow-400 mb-2">Des moyens adaptés</h3>
+        <p class="text-gray-300">Nous utilisons des équipements modernes pour garantir un déménagement efficace, quel que soit le volume ou la complexité.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section id="a-propos" class="py-16 px-4 max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-8 text-red-600">À propos de Spartan Company</h2>
+    <p class="text-lg leading-relaxed text-center">
+      Spartan Company est une entreprise spécialisée dans le déménagement professionnel pour particuliers et entreprises.
+      Fondée sur des valeurs de rigueur, d’efficacité et de respect, notre équipe vous accompagne à chaque étape pour un déménagement sans stress.
+      Grâce à notre expertise, nous assurons un service personnalisé et adapté à tous les besoins.
+    </p>
+    <p class="text-xl font-bold text-center mt-6 text-yellow-400">Plus de 10 ans d’expérience à votre service !</p>
+  </section>
+
+<!-- SERVICES -->
+<section id="services" class="py-16 px-4 max-w-7xl mx-auto">
+  <h2 class="text-3xl font-bold text-center mb-12 text-red-600">Nos Services</h2>
+
+  <!-- Grille 3 colonnes (1 en mobile, 2 en md, 3 en lg) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- Déménagement résidentiel -->
+    <div class="p-6 shadow-md rounded-xl hover:shadow-lg transition bg-white text-black transform duration-700 hover:scale-105 animate-fade-up">
+      <h3 class="text-xl font-semibold mb-2">Déménagement résidentiel</h3>
+      <p>Nous prenons en charge vos biens personnels avec le plus grand soin, du studio à la maison familiale.</p>
+    </div>
+
+    <!-- Déménagement professionnel -->
+    <div class="p-6 shadow-md rounded-xl hover:shadow-lg transition bg-white text-black transform duration-700 hover:scale-105 animate-fade-up">
+      <h3 class="text-xl font-semibold mb-2">Déménagement professionnel</h3>
+      <p>Transfert d’entreprise optimisé avec coordination totale et respect des délais.</p>
+    </div>
+
+    <!-- Monte-meuble -->
+    <div class="p-6 shadow-md rounded-xl hover:shadow-lg transition bg-white text-black transform duration-700 hover:scale-105 animate-fade-up">
+      <h3 class="text-xl font-semibold mb-2">Monte-meuble jusqu’à 11 étages</h3>
+      <p>Mise à disposition d’un monte-meuble performant pouvant atteindre jusqu’à 11 étages pour vos déménagements complexes.</p>
+    </div>
+
+    <!-- Location camion avec chauffeur -->
+    <div class="p-6 shadow-md rounded-xl hover:shadow-lg transition bg-white text-black transform duration-700 hover:scale-105 animate-fade-up">
+      <h3 class="text-xl font-semibold mb-2">Location camion avec chauffeur</h3>
+      <p>Camions 12–20 m³ (et +) avec chauffeur expérimenté. Chargement/assistance selon besoin, à l’heure ou à la journée.</p>
+      <a href="#location-camion" class="mt-4 inline-block text-sm font-semibold text-red-600 hover:underline">En savoir plus</a>
+    </div>
+
+    <!-- Logistique événementielle -->
+    <div class="p-6 shadow-md rounded-xl hover:shadow-lg transition bg-white text-black transform duration-700 hover:scale-105 animate-fade-up">
+      <h3 class="text-xl font-semibold mb-2">Logistique événementielle</h3>
+      <p>Transport, montage/démontage, manutention, stockage temporaire : salons, stands, concerts, tournées.</p>
+      <a href="#logistique-evenementiel" class="mt-4 inline-block text-sm font-semibold text-red-600 hover:underline">En savoir plus</a>
+    </div>
+
+    <!-- Garde-meuble -->
+    <div class="p-6 shadow-md rounded-xl hover:shadow-lg transition bg-white text-black transform duration-700 hover:scale-105 animate-fade-up">
+      <h3 class="text-xl font-semibold mb-2">Garde-meuble</h3>
+      <p>Stockage sécurisé et flexible. Idéal pendant vos travaux, transferts ou déménagements.</p>
+      <a href="#garde-meuble" class="mt-4 inline-block text-sm font-semibold text-red-600 hover:underline">En savoir plus</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- SECTION : Garde-meuble -->
+<section id="garde-meuble" class="py-20 px-4 bg-black text-white">
+  <div class="max-w-5xl mx-auto">
+    
+    <!-- Image en haut -->
+    <div class="animate-fade-up mb-10">
+      <img src="assets/images/GardeMeubleSYL.jpeg" 
+           alt="Garde-meuble Spartan"
+           class="rounded-2xl shadow-xl w-full h-auto object-cover max-h-[400px] mx-auto" 
+           loading="lazy">
+    </div>
+
+    <!-- Texte centré -->
+    <div class="animate-fade-up text-center bg-zinc-900/70 p-8 rounded-2xl shadow-lg">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-orange-400 mb-4">
+        Garde-meuble Spartan
+      </h2>
+      <p class="text-gray-300 mb-6 max-w-3xl mx-auto">
+        Bénéficiez d’un stockage sécurisé et flexible : nos solutions s’adaptent à vos besoins,
+        que ce soit pour un déménagement temporaire, des travaux ou une longue durée.
+      </p>
+
+      <!-- Liste en colonnes -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left mb-8">
+        <ul class="list-disc list-inside text-gray-300 space-y-2">
+          <li>Caisse bois 8–12 m³ avec scellés numérotés</li>
+          <li>Conteneur métal 10–33 m³ ventilé et sécurisé</li>
+        </ul>
+        <ul class="list-disc list-inside text-gray-300 space-y-2">
+          <li>Entrepôt sous alarme & contrôle d’accès</li>
+          <li>Assurance, inventaire et étiquetage inclus</li>
+        </ul>
+      </div>
+
+      <!-- 🔗 Bouton unique redirigeant vers le formulaire Google -->
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://docs.google.com/forms/d/16_OyggNPXtU31kCa50drvaK85dlNwQg-wSixw3gcKfQ/viewform?usp=sf_link"
+           target="_blank" rel="noopener"
+           class="inline-block bg-[#ff6600] hover:bg-red-600 text-black font-bold py-3 px-6 rounded-lg transition">
+          Demande de devis
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- SECTION : Location camion avec chauffeur -->
+<section id="location-camion" class="py-16 px-4 bg-black">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    <div class="animate-fade-up">
+      <h2 class="text-3xl font-extrabold text-orange-400 mb-3">Location camion avec chauffeur</h2>
+      <p class="text-gray-300 mb-4">
+        Gagnez en flexibilité : nous mettons à disposition un chauffeur pro et un véhicule adapté à votre volume.
+        Formules à l’heure, demi-journée ou journée, avec ou sans aide au chargement.
+      </p>
+      <ul class="text-gray-300 list-disc list-inside space-y-1 mb-6">
+        <li>Camions 12–20 m³ (autres volumes sur demande)</li>
+        <li>Chauffeur expérimenté & assurance incluse</li>
+        <li>Forfaits carburant/péages selon trajet</li>
+        <li>Options : aide manutention, fournitures, plateau roulant, sangles d'arrimage</li>
+      </ul>
+
+      <!-- 🔗 Bouton unique redirigeant vers le Google Form -->
+      <div class="flex flex-wrap gap-3">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfljQCrIB8QWH4mEbouaXex_NT1KV_ReRFhTXpyLlEKEtPhbA/viewform?usp=header"
+           target="_blank" rel="noopener"
+           class="inline-block bg-[#ff6600] hover:bg-red-600 text-black font-bold py-3 px-6 rounded transition">
+          Demande de devis
+        </a>
+      </div>
+    </div>
+
+    <div class="animate-fade-up">
+      <img src="assets/images/Camion avec Chauffeur.jpg"
+           alt="Location camion avec chauffeur"
+           class="rounded-2xl shadow-xl w-full h-auto"
+           loading="lazy">
+    </div>
+  </div>
+</section>
+
+
+
+<!-- SECTION : Logistique événementielle -->
+<section id="logistique-evenementiel" class="py-16 px-4 bg-zinc-900/60">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    
+    <!-- Image -->
+    <div class="order-2 md:order-1 animate-fade-up">
+      <img src="assets/images/logistiqueévents.jpg" 
+           alt="Logistique événementielle"
+           class="rounded-2xl shadow-xl w-full h-auto" 
+           loading="lazy">
+    </div>
+
+    <!-- Texte -->
+    <div class="order-1 md:order-2 animate-fade-up">
+      <h2 class="text-3xl font-extrabold text-orange-400 mb-3">Logistique événementielle</h2>
+      <p class="text-gray-300 mb-4">
+        Une équipe dédiée pour vos événements : salons, shows, tournages, tournées. 
+        Gestion transport, montage/démontage, stockage tampon, coordination planning et repérages.
+      </p>
+      <ul class="text-gray-300 list-disc list-inside space-y-1 mb-6">
+        <li>Chargement sécurisé & manutention spécialisée</li>
+        <li>Montage stand & assistance technique</li>
+        <li>Stockage temporaire (garde-meuble)</li>
+        <li>Livraison multi-sites & timing serré</li>
+      </ul>
+
+      <!-- 🔗 Bouton redirigeant vers le Google Form -->
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdsESK2jy2cVjfnNybFGLZd3sFh-Qo3X5xTBl8M-gJuYys7Mg/viewform?usp=header"
+         target="_blank" rel="noopener"
+         class="inline-block bg-[#ff6600] hover:bg-red-600 text-black font-bold py-3 px-6 rounded transition">
+        Devis Événementiel
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION : QUALITÉS / MARQUEE -->
+<section id="qualites" class="bg-black text-white py-6 overflow-hidden">
+  <div class="whitespace-nowrap animate-marquee text-xl font-bold">
+    🚛 Déménagement Express &nbsp;&nbsp;&nbsp; 🔒 Sécurité Garantie &nbsp;&nbsp;&nbsp; 📦 Emballage Soigné &nbsp;&nbsp;&nbsp;
+    📍 Interventions dans toute la France &nbsp;&nbsp;&nbsp; 💬 Service client réactif &nbsp;&nbsp;&nbsp; 🔧 Matériel professionnel inclus &nbsp;&nbsp;&nbsp;
+  </div>
+</section>
+
+<style>
+  /* Animation du texte défilant */
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .animate-marquee {
+    display: inline-block;
+    min-width: 100%;
+    animation: marquee 25s linear infinite;
+  }
+</style>
+
+
+<!-- DEVIS - Onglets Particulier / Pro (redirection Google Forms) -->
+<section id="devis" class="py-16 px-4 text-center bg-gray-100 text-black">
+  <h2 class="text-3xl font-bold mb-2">Demander un devis</h2>
+  <p class="mb-8 text-lg">Choisissez votre profil pour accéder au formulaire adapté.</p>
+
+  <div class="max-w-3xl mx-auto">
+    <!-- Tabs -->
+    <div class="inline-flex bg-white rounded-xl shadow border border-gray-200 overflow-hidden">
+      <button id="tabPart" class="px-5 py-3 text-sm font-semibold bg-[#ff6600] text-black">Particulier</button>
+      <button id="tabPro"  class="px-5 py-3 text-sm font-semibold hover:bg-gray-100">Professionnel</button>
+    </div>
+
+    <!-- Panels Particuliers -->
+    <div class="mt-8 text-center bg-white rounded-2xl shadow p-6" id="panelPart">
+      <h3 class="text-xl font-bold mb-2 text-black">Devis déménagement – Particulier</h3>
+      <p class="text-gray-700 mb-6">Appartement, maison, garde-meuble… Nous vous accompagnons de A à Z.</p>
+      <a href="https://docs.google.com/forms/d/1wDFKHkNY3hwscRxVdxIEcqbMyqosOTY80FGj83TzrDY/edit"
+         target="_blank" rel="noopener"
+         class="inline-block bg-[#ff6600] hover:bg-red-600 text-black font-bold py-3 px-8 rounded transition">
+        Ouvrir le formulaire Particulier
+      </a>
+    </div>
+
+
+    <!-- Panels Pro -->
+    <div class="mt-8 text-center bg-white rounded-2xl shadow p-6 hidden" id="panelPro">
+      <h3 class="text-xl font-bold mb-2 text-black">Devis déménagement – Professionnel</h3>
+      <p class="text-gray-700 mb-6">Transfert de bureaux, archives, matériel, garde-meuble pro, planning sur mesure.</p>
+      <!-- 👉 Remplace ce lien par ton Google Form “Pro” quand tu l’auras -->
+      <a href="https://docs.google.com/forms/d/1wDFKHkNY3hwscRxVdxIEcqbMyqosOTY80FGj83TzrDY/edit"
+         target="_blank" rel="noopener"
+         class="inline-block bg-[#ff6600] hover:bg-red-600 text-black font-bold py-3 px-8 rounded transition">
+        Ouvrir le formulaire Professionnel
+      </a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-16 px-4 bg-gray-100 text-black">
+    <h2 class="text-3xl font-bold text-center mb-12">Contactez-nous</h2>
+    <div class="max-w-xl mx-auto space-y-4 text-center">
+      <p>Email : <a href="mailto:spartancompany93@gmail.com" class="text-red-600">spartancompany93@gmail.com</a></p>
+      <p>Téléphone : 06 12 34 56 78</p>
+      <div class="flex justify-center space-x-6">
+        <a href="https://www.instagram.com/spartan__company/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61571814646691" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.tiktok.com/@spartcompany?lang=fr" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTREPRISES PARTENAIRES -->
+<section id="partenaires" class="py-16 px-4 bg-white text-black">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Ils nous font confiance</h2>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 items-center justify-items-center">
+      <!-- Logo 1 -->
+      <img src="assets/images/Logodemeco.jpg" alt="Partenaire 1" class="h-40 object-contain transition hover:grayscale-105 transition" />
+      <!-- Logo 2 -->
+      <img src="assets/images/LogoDenis.png" alt="Partenaire 2" class="h-40  object-contain transition hover:grayscale-105 transition" />
+      <!-- Logo 3 -->
+      <img src="assets/images/logoKTMH.jpg" alt="Partenaire 3" class="h-40 object-contain transition hover:grayscale-105 transition" />
+      <!-- Logo 4 -->
+      <img src="assets/images/LogoSantafe.png" alt="Partenaire 4" class="h-40 object-contain transition hover:grayscale-105 transition" />
+    </div>
+  </div>
+</section>
+
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white text-center py-6">
+    <p>© 2025 Spartan Company. Tous droits réservés.</p>
+  </footer>
+
+<a href="assets/FLYER DOS PDF.pdf" download
+   class="fixed bottom-4 right-4 bg-orange-500 text-black font-semibold px-4 py-2 rounded-full shadow hover:bg-orange-400">
+  📄 Télécharger notre brochure
+</a>
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const burger = document.getElementById('burger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const closeBtn = document.getElementById('closeMenu');
+
+      // Ouvrir/fermer le menu + animation burger
+      function toggleMenu(force) {
+        const open = force ?? !mobileMenu.classList.contains('open');
+        if (open) {
+          mobileMenu.classList.add('open');
+          burger.classList.add('open');
+          burger.setAttribute('aria-expanded','true');
+        } else {
+          mobileMenu.classList.remove('open');
+          burger.classList.remove('open');
+          burger.setAttribute('aria-expanded','false');
+        }
+      }
+
+      if (burger && mobileMenu) burger.addEventListener('click', () => toggleMenu());
+      if (closeBtn) closeBtn.addEventListener('click', () => toggleMenu(false));
+      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+      // Animations au scroll
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+      },{threshold:0.2});
+      document.querySelectorAll('.animate-fade-up').forEach(el=>io.observe(el));
+      });
+
+      // CTA "go-devis" : active l'onglet voulu puis scroll
+document.querySelectorAll('.go-devis').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const tab = btn.getAttribute('data-tab'); // 'part' ou 'pro'
+    try { localStorage.setItem('devisTab', tab === 'pro' ? 'pro' : 'part'); } catch(e){}
+  });
+});
+
+  </script>
+
 <script>
-    document.getElementById("menu-toggle").addEventListener("click", function() {
-        let menu = document.getElementById("dropdown-menu");
-        menu.classList.toggle("hidden");
-    });
+  // Onglets devis (Particulier / Pro) + persistance onglet
+  (function(){
+    const tabPart = document.getElementById('tabPart');
+    const tabPro  = document.getElementById('tabPro');
+    const panelPart = document.getElementById('panelPart');
+    const panelPro  = document.getElementById('panelPro');
+
+    function setTab(which){
+      if(!tabPart||!tabPro||!panelPart||!panelPro) return;
+      const isPro = which === 'pro';
+      tabPart.classList.toggle('bg-[#ff6600]', !isPro);
+      tabPart.classList.toggle('text-black', !isPro);
+      tabPart.classList.toggle('hover:bg-gray-100', isPro);
+      tabPro.classList.toggle('bg-[#ff6600]', isPro);
+      tabPro.classList.toggle('text-black', isPro);
+      tabPro.classList.toggle('hover:bg-gray-100', !isPro);
+      panelPart.classList.toggle('hidden', isPro);
+      panelPro.classList.toggle('hidden', !isPro);
+      try{ localStorage.setItem('devisTab', isPro ? 'pro' : 'part'); }catch(e){}
+    }
+    if (tabPart) tabPart.addEventListener('click', ()=>setTab('part'));
+    if (tabPro)  tabPro.addEventListener('click',  ()=>setTab('pro'));
+    setTab((()=>{ try{return localStorage.getItem('devisTab')||'part';}catch(e){return 'part';}})());
+  })();
 </script>
 
-<nav id="menu" class="hidden md:flex space-x-8 justify-center w-full">
-        <a href="#accueil" class="bg-black-700 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded transition duration-300">Accueil</a>
-        <a href="#contact" class="bg-black-700 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded transition duration-300">Contact</a>
-        <a href="#devis" class="bg-black-700 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded transition duration-300">Demander un devis</a>
-    </nav>
-</header>
-
-<!-- Section avec images et séparation diagonale -->
-<section class="diagonal-section flex flex-col md:flex-row">
-    <div class="image-container">
-        <img src="assets/PhotoMonteMeuble.jpg" alt="Image Gauche">
-    </div>
-    <div class="image-container">
-        <img src="assets/Imagelibredroit1.jpg" alt="Image Droite">
-    </div>
-</section>
-
-<div class="w-full h-1 bg-yellow-500 my-4"></div>
-
-<!-- Accueil -->
-<section id="accueil" class="h-screen flex flex-col items-center justify-center text-center text-white bg-cover bg-center bg-black">
-    <h1 class="text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-lg text-yellow-500">Bienvenue chez SpartanCompany</h1>
-    <p class="text-lg md:text-xl max-w-2xl text-gray-300">Société de déménagement, transport et monte-meuble intervenant dans toute la France.</p>
-    <p class="text-md md:text-lg mt-4 text-gray-300">Plus de 10 ans d'expérience à votre service.</p>
-</section>
-
-<div class="w-full h-1 bg-yellow-500 my-4"></div>
-
-<!-- Contact -->
-<section id="contact" class="p-20 text-center bg-gradient-footer">
-    <h2 class="text-4xl md:text-5xl font-bold text-white-500 mb-6">Contact</h2>
-
-    <p class="text-lg text-gray-300 max-w-3xl mx-auto mb-4">
-        Pour toute question, contactez-nous :
-    </p>
-
-    <p class="text-lg text-gray-300">
-        📧 <a href="mailto:spartancompany93@gmail.com" class="text-yellow-500 hover:underline">
-            spartancompany93@gmail.com
-        </a>
-    </p>
-
-    <p class="text-lg text-gray-300 mt-2">
-        📞 <a href="tel:+33641956108" class="text-yellow-500 hover:underline">
-            +33 6 41 95 61 08
-        </a>
-    </p>
-
-    <p class="text-lg text-gray-300 mt-2">
-        📞 <a href="tel:+33652065253" class="text-yellow-500 hover:underline">
-            +33 6 52 06 52 53
-        </a>
-    </p>
-</section>
-
-<div class="w-full h-1 bg-yellow-500 my-4"></div>
-
-
-
-<!-- Devis -->
-<section id="devis" class="p-16 text-center">
-    <h2 class="text-5xl font-bold text-white-500 mb-6">Demander un Devis</h2>
-    <p class="text-lg text-gray-300 mb-6">Cliquez sur le bouton ci-dessous pour accéder au formulaire de demande de devis.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJMh0LOUDkcUr1V93ugYY1_ZaERdU3kkNGOzbXgWvuNvlpmg/viewform?usp=dialog" target="_blank" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded transition duration-300">Remplir le Formulaire</a>
-</section>
-
-
-
-<!-- Liens vers les réseaux sociaux (déplacés dans le footer) -->
-<footer class="p-12 bg-black-footer text-white text-center">
-    <div class="container mx-auto flex flex-col items-center">
-        <img src="assets/Spartan.png.png" alt="SpartanCompany Logo" class="h-20 mb-4">
-        <div class="flex space-x-4 mb-4">
-            <a href="https://www.facebook.com/profile.php?id=61571814646691" target="_blank">
-                <img src="assets/facebook.png.png" alt="Facebook" class="max-w-[50px] md:max-w-[70px]">
-            </a>
-            <a href="https://www.instagram.com/spartan__company/" target="_blank">
-                <img src="assets/instagram.png.png" alt="Instagram" class="max-w-[50px] md:max-w-[70px]">
-            </a>
-            <a href="https://www.tiktok.com/@spartcompany?lang=fr" target="_blank">
-                <img src="assets/tiktokblanc2.png" alt="TikTok" class="max-w-[50px] md:max-w-[70px]">
-            </a>
-        </div>
-        <div class="flex justify-center space-x-10 text-gray-300 items-center">
-            <a href="mailto:spartancompany93@gmail.com" class="hover:text-yellow-500">Contact</a>
-            <a href="mentions-legales.html" target="_blank" class="hover:text-yellow-500">Mentions légales</a>
-        </div>
-    </div>
+<footer class="bg-black text-white text-center py-6">
+  <p>© 2025 Spartan Company. Tous droits réservés. 
+    <a href="mentions-legales.html" class="text-[#b08d57] hover:text-yellow-400 underline ml-2">
+      Mentions légales
+    </a>
+  </p>
 </footer>
+
+
+
 </body>
 </html>
