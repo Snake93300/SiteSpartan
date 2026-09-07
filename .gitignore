@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+._*
+
+# Sauvegardes / fichiers de travail
+*BACK UP*/
+_originals_backup/
+Logo spartan/
+.claude/
+
+# Originaux non utilisés par le site
+Monte Meuble *.jpg
+Monte Meuble *.png
+Location Camion avec chauffeur.png
+hero-bg.jpg
+location-camion.png
+testfile
